@@ -1,90 +1,14 @@
-# Build Script
-
-```none
-NAME
-    build.ps1
-
-SYNOPSIS
-    Builds and publishes the projects
-
-
-SYNTAX
-    build.ps1 [-Architecture <String>] [-Configuration <String>] [-TargetFramework <String>] [-DryRun] [-UseMsBuild] [<CommonParameters>]
-
-
-DESCRIPTION
-    Builds and publishes the projects under artifacts\. Provides control over what TargetFramework to build against,
-    which build engine to use (dotnet vs. MSBuild), and what architecture (x86, x64) to build.
-
-
-PARAMETERS
-    -Architecture <String>
-        The Platform architecture to build.
-        Valid values are AnyCPU, 'Any CPU', x86, Win32, x64, and amd64.
-
-        The default is $env:PROCESSOR_ARCHITECTURE, i.e., the architecture of the current
-        OS.
-
-        amd64 is equivalent to x64
-        AnyCPU and 'Any CPU' and Win32 are equivalent to x86
-
-    -Configuration <String>
-        The build configuration
-
-        Valid values are Debug, Release
-        The default is Debug
-
-    -TargetFramework <String>
-        The TargetFramework to build for.
-
-        This will always default to the most recent released version of .NET Core that supports WPF.
-        You can identify this by loking at global.json sdk.version property, or <TargetFramework> property
-        in project files im this repo.
-
-        Alternative TargetFramework can be supplied to build. Currently, netcoreapp3.1 (default),
-        net6.0-windows, net7.0-windows, net8.0-windows, net9.0-windows and net10.0-windows are supported.
-
-    -DryRun [<SwitchParameter>]
-        When this switch is specified, the build is simulated, but the actual build is not run.
-
-    -UseMsBuild [<SwitchParameter>]
-        When this switch is specified, MSBuild is used as the build engine instead of dotnet.exe.
-        This requires that VS2022 be installed and avaialble on the local machine.
-
-        Some projects in this repo can be built only using MSBuild.
-
-    <CommonParameters>
-        This cmdlet supports the common parameters: Verbose, Debug,
-        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-        OutBuffer, PipelineVariable, and OutVariable. For more information, see
-        about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
-
-    -------------------------- EXAMPLE 1 --------------------------
-    PS C:\>build.ps1
-
-    Builds the repo
-    -------------------------- EXAMPLE 2 --------------------------
-    PS C:\>build.ps1 -TargetFramework net10.0-windows -UseMsBuild
-
-    Builds the repo using MSBuild for net10.0-windows TFM
-    -------------------------- EXAMPLE 3 --------------------------
-    PS C:\>build.ps1 -UseMsBuild -Platform x86 -Configuration Release
-
-    Builds the repo using MSBuild for x86 platform & Release configuration
-```
-
----
-
 # DailySysClean
 
-**DailySysClean** is a Windows administration tool designed to automate daily system cleaning tasks such as clearing temporary files, cleaning logs, and optimizing system performance. This tool is implemented using batch scripting for simplicity and ease of use.
+**DailySysClean** is a Windows administration tool designed to optimize system performance by cleaning junk files, temporary files, and unnecessary logs. It also helps free up memory and improve system speed. This tool is implemented using batch scripting for simplicity and ease of use.
 
 ---
 
 ## Features
 - Clear temporary files.
+- Delete junk files.
 - Clean system logs.
-- Optimize disk space.
+- Free up memory.
 - Automate repetitive cleaning tasks.
 
 ---
@@ -107,5 +31,60 @@ PARAMETERS
 
 ### Step 1: Download the Tool
 1. Clone or download the repository to your local machine:
-   ```bash
-   git clone https://github.com/your-repo/DailySysClean.git
+    ```bash
+    git clone https://github.com/your-repo/DailySysClean.git
+    ```
+    Or download the ZIP file and extract it.
+
+### Step 2: Configure Settings
+1. Open the `settings.txt` file in a text editor.
+2. Customize the settings as per your requirements (e.g., specify directories to clean).
+
+### Step 3: Run the Script
+1. Open a Command Prompt with Administrator privileges.
+2. Navigate to the folder containing `DailySysClean.bat`:
+    ```cmd
+    cd path\to\DailySysClean
+    ```
+3. Execute the script:
+    ```cmd
+    DailySysClean.bat
+    ```
+
+### Step 4: Review Logs
+1. After execution, check the `cleaning_log.txt` file for a summary of the cleaning tasks performed.
+
+---
+
+## Example Configuration (`settings.txt`)
+```plaintext
+# Directories to clean
+TEMP_DIR=C:\Users\YourUsername\AppData\Local\Temp
+LOG_DIR=C:\Windows\Logs
+
+# Enable or disable specific cleaning tasks
+CLEAR_TEMP=true
+CLEAR_LOGS=true
+```
+
+---
+
+## Further Development
+Here are some ideas to enhance the tool:
+- **Add More Cleaning Tasks**: Include additional system maintenance tasks like defragmentation or registry cleaning.
+- **GUI Interface**: Create a graphical user interface for easier usage.
+- **Scheduler Integration**: Automate the script to run daily using Task Scheduler.
+- **Error Handling**: Improve error handling and add notifications for failed tasks.
+- **Multi-Language Support**: Allow users to select their preferred language.
+
+---
+
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+## Disclaimer
+Use this tool at your own risk. Ensure you understand the cleaning tasks before executing the script.
+## Updated License
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute this software under the terms of the license. See the `LICENSE` file in the repository for the full license text.

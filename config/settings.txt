@@ -1,0 +1,8 @@
+# Directories to clean
+TEMP_DIR=C:\Windows\Temp
+LOG_DIR=C:\Windows\Logs
+
+# Enable/Disable specific tasks
+CLEAR_TEMP=true
+CLEAR_LOGS=true
+FREE_MEMORY=true
