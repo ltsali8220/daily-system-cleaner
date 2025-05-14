@@ -32,7 +32,7 @@
 ### Step 1: Download the Tool
 1. Clone or download the repository to your local machine:
     ```bash
-    git clone https://github.com/your-repo/DailySysClean.git
+    git clone [https://github.com/your-repo/DailySysClean.git](https://github.com/ltsali8220/daily-system-cleaner.git)
     ```
     Or download the ZIP file and extract it.
 
